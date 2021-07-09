@@ -7,7 +7,7 @@
   <title>Hello App Engine Standard Java 8</title>
 </head>
 <body>
-    <h1>Hello App Engine -- Java 8!</h1>
+    <h1>Hello App Engine -- Java 888!</h1>
 
   <p>ThisSSS is <%= HelloAppEngine.getInfo() %>.</p>
   <table>

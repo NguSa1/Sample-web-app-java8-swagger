@@ -2,9 +2,9 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
   <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <modules>
-    <module>sample-web-app-backend</module>
+    <module>sample-web-app-swagger</module>
     <module>sample-web-app-frontend</module>
   </modules>
 
@@ -12,12 +12,13 @@
   <artifactId>web-app-module</artifactId>
 
   <properties>
-    <!-- uncomment if you wish to set your project here project- gcloud is used otherwise -->
+    <!-- uncomment if you wish to set your project here project- gcloud is useds otherwise -->
     <!-- <app.deploy.project>your-app-id</app.deploy.project> -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <java.version>1.8</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
     <archiveClasses>true</archiveClasses>
     <app.id>sampleswaggerjava</app.id>
@@ -101,24 +102,18 @@
           <deploy.projectId>${app.id}</deploy.projectId>
           <devserver.jvmFlags>
             <devserver.jvmFlag>-Xdebug</devserver.jvmFlag>
-<!--            <devserver.jvmFlag>-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005</devserver.jvmFlag>-->
-<!--            <devserver.jvmFlag>-Ddatastore.backing_store=${project.basedir}\${app.id}\local_db.bin</devserver.jvmFlag>-->
-<!--            <devserver.jvmFlag>-Dcom.google.appengine.devappserver_module.web-portal-user-backend.port=8090-->
-<!--            </devserver.jvmFlag>-->
-<!--            <devserver.jvmFlag>-Dcom.google.appengine.devappserver_module.web-portal-cloudplug-backend.port=8080-->
-<!--            </devserver.jvmFlag>-->
             <devserver.jvmFlag>-DappId=${app.id}</devserver.jvmFlag>
             <devserver.jvmFlag>-Dtask_queue.disable_auto_task_execution=false</devserver.jvmFlag>
           </devserver.jvmFlags>
           <devserver.environment>
-            <GOOGLE_APPLICATION_CREDENTIALS>C:\Users\sangu\Documents\git\sampleswaggerjava-servicekey.json
+            <GOOGLE_APPLICATION_CREDENTIALS>
             </GOOGLE_APPLICATION_CREDENTIALS>
           </devserver.environment>
           <devserver.port>8081</devserver.port> <!-- Default module's port-->
           <devserver.host>0.0.0.0</devserver.host>
           <devserver.services><!-- Default module is defined first -->
             <devserver.service>
-              ${project.basedir}/sample-web-app-swagger/target/sample-web-app-swagger-1.0-SNAPSHOT
+              ${project.basedir}/sample-web-app-swagger/target/sample-web-app-swagger-1.0
             </devserver.service>
           </devserver.services>
         </configuration>
@@ -143,11 +138,6 @@
             <exclude>com.google.guava:guava</exclude> <!-- avoid android version -->
           </excludes>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.1.0</version>
       </plugin>
 
       <plugin>
@@ -199,12 +189,6 @@
                 <requireMavenVersion>
                   <version>3.5</version>
                 </requireMavenVersion>
-                <requirePluginVersions>
-                   <message>Best Practice is to always define plugin versions!</message>
-                   <banLatest>true</banLatest>
-                   <banRelease>true</banRelease>
-                   <phases>clean,deploy,verify,appengine:run,appengine:deploy,appengine:update,appengine:devappaserver,site</phases>
-                </requirePluginVersions>
               </rules>
             </configuration>
           </execution>
